@@ -9,8 +9,17 @@ class Game {
   };
 
   start() {
-    this.frameCount ++;
-  }
+    while (this.frameCount < 10) {
+      this.frameCount ++; 
+    }
+  };
 
-}
+  roll(pins_down) {
+    if (pins_down === 10) {
+      return '/'
+    } else {
+      pins_down }
+  };
+  
+};
 
