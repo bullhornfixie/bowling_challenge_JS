@@ -1,0 +1,20 @@
+#myHeader {
+  background-color: #c3fbf4;
+  color: black;
+  padding: 40px;
+  text-align: center;
+}
+
+#restart {
+  height: 30px;
+  margin-bottom: 2%;
+}
+
+.grid {
+  display: grid;
+  border-style: solid;
+  border-style: black;
+  grid-template-columns: repeat(11, 60px);
+  grid-template-rows: 30px;
+  border-style: black;
+  background-color: #c3fbf4}

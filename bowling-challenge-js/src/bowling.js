@@ -1,25 +1,27 @@
+// https://codepen.io/owenjam/pen/reeLWN
+// https://www.bowlinggenius.com/
+
 'use strict';
 
-class Game {
+class BowlingGame {
 
-  constructor(){
-    this.frameCount = 0
-    this.totalScore = 0
-    this.spareBonus = false
-  };
+  constructor() {
+    this.rolls = [];
+    this.score = 20
+  }
 
-  start() {
-    while (this.frameCount < 10) {
-      this.frameCount ++; 
-    }
-  };
+  roll = function(pins) {
+    this.rolls.push(pins);
+    return "pins_down"
+  }
 
-  roll(pins_down) {
-    if (pins_down === 10) {
-      return '/'
-    } else {
-      pins_down }
-  };
-  
+  frameScore = function() {
+    document.getElementById("frame1").innerHTML = this.score;
+    console.log(1)
+  }
+
 };
+
+
+
 
