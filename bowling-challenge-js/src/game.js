@@ -24,6 +24,13 @@ Game.prototype.displayTotalScore = function() {
   return this.scoreCard.reduce((a, b) => a + b, 0);
 }
 
+Game.prototype.strikeOrSpare = function() {
+  let bonus = ""
+  if(this.pinCount === 0 && this.shotCount === 1 ) { bonus = "X" }
+  else if(this.pinCount === 0 && this.shotCount === 2 ) { bonus = "/" }
+  return bonus 
+}
+
 Game.prototype.frameReset = function() {
   this.pinCount = 10; 
   this.shotCount = 0;
