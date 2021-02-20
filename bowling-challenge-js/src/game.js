@@ -13,7 +13,7 @@ Game.prototype.receiveShot = function(hitpins) {
   this.shotCount++;
   this.pinCount -= hitpins;
   this.frameScore += hitpins;
-  if (this.shotCount === 2 || this.pinCount === 0 ) { return "frame end"}
+  if (this.shotCount === 2 || this.pinCount === 0 ) { return "end frame"}
 };
 
 Game.prototype.updateTotalScore = function() {
@@ -30,32 +30,10 @@ Game.prototype.frameReset = function() {
   this.frameScore = 0;
 }
 
-kingpin = new Game
-kingpin.receiveShot(10)
-
-kingpin.updateTotalScore()
-kingpin.displayTotalScore()
-kingpin.frameReset()
-
-kingpin.receiveShot(5)
-kingpin.receiveShot(5)
-
-kingpin.updateTotalScore()
-kingpin.displayTotalScore()
-// should return 20 
-
 
 /* when frame ends
-update frameScore [] with score 
-reset pinCount to 10 
-reset shotCount to 0 
-reset frameScore to 0 
-track spares or strikes for frame 
-
-syntax idea if frameEnd = true 
-  update 
-  display 
-  reset
-    frameEnd = false 
-
+  update frameScore [] with score 
+  display frameScore
+  track spares or strikes for frame 
+  reset frame data at end of frame
 */
