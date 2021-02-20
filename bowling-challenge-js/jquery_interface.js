@@ -1,10 +1,16 @@
 $(document).ready(function() {
-  let kingpin = new BowlingGame();
-  console.log(kingpin.score)
+  let kingpin = new Game();
 
 $('#restart').click(function() {
-  kingpin.score = 0
-  console.log(kingpin.score)
+  console.log("game restarted")
 })
 
+$('#pin-1').click(function() {
+  kingpin.roll(1)
+  $('#frame-1').text(kingpin.score[1]);
+  $('#frame-2').text(kingpin.score[2]);
+})
+
+
 });
+

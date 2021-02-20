@@ -10,11 +10,17 @@
   margin-bottom: 2%;
 }
 
+.pins {
+  height: 30px;
+  margin-bottom: 2%;
+}
+
 .grid {
   display: grid;
   border-style: solid;
   border-style: black;
-  grid-template-columns: repeat(11, 60px);
+  grid-template-columns: repeat(10, 60px);
   grid-template-rows: 30px;
   border-style: black;
-  background-color: #c3fbf4}
+  background-color: #c3fbf4
+}
