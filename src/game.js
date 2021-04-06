@@ -6,6 +6,7 @@ class Game {
   this.pinCount = 10; 
   this.shotCount = 0;
   this.frameScore = 0;
+  this.frameCount = 1;
   }
 };
 
@@ -13,10 +14,19 @@ Game.prototype.receiveShot = function(hitpins) {
   this.shotCount++;
   this.pinCount -= hitpins;
   this.frameScore += hitpins; 
+  this.endOfFrame()
+}
+
+Game.prototype.endOfFrame = function() {
+  if(this.shotCount >2 ) { 
+    this.frameCount ++
+    this.frameReset()
+  }
+}
+
   // if(this.shotCount === 1 && this.bonus = "/") { hitpins * 2 }
-  if (this.shotCount === 2 || this.pinCount === 0 ) { return "end frame"}
+  // if (this.shotCount === 2 || this.pinCount === 0 ) { this.frameCount ++ }
   // once above condition is true need to execute below functions 
-};
 
 Game.prototype.strikeOrSpare = function() {
   let bonus = ""
@@ -26,11 +36,8 @@ Game.prototype.strikeOrSpare = function() {
   // need to configure how bonus score will be implemented for a spare /
 }
 
-Game.prototype.updateTotalScore = function() {
-  this.scoreCard.push(this.frameScore)
-}
-
 Game.prototype.displayTotalScore = function() {
+  this.scoreCard.push(this.frameScore)
   return this.scoreCard.reduce((a, b) => a + b, 0);
 }
 
@@ -41,3 +48,14 @@ Game.prototype.frameReset = function() {
 }
 
 
+
+/*
+let kingpin = new Game
+
+kingpin.receiveShot(2)
+kingpin.receiveShot(3)
+> "end of frame"
+
+kingpin.frameScore
+> 5
+*/
