@@ -1,6 +1,8 @@
 # Bowling Challenge 
 
-Previously completed this challenge in Ruby and aimed to complete in *JavaScript* using Jasmine as a testing framework. 
+https://github.com/makersacademy/bowling-challenge
+
+Front end JQuery-triggered bowling scorecard. 
 
 ## About Game 
 
