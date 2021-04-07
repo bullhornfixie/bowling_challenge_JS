@@ -9,9 +9,10 @@ $('#pin-4').click(function() { kingpin.receiveShot(4); points() })
 $('#pin-5').click(function() { kingpin.receiveShot(5); points() })
 
 function points() { 
-  if(kingpin.shotCount === 2) { $('#score').text(kingpin.displayTotalScore()) }
   var x = kingpin.frameCount.toString()
   $('#frame-' + x).text(kingpin.frameScore)
+  if(kingpin.shotCount === 2) { kingpin.endOfFrame() }
+  if(kingpin.shotCount === 2) { kingpin.frameReset() }
   }
 });
 

@@ -5,23 +5,27 @@ class Game {
   this.scoreCard = []
   this.pinCount = 10; 
   this.shotCount = 0;
-  this.frameScore = 0;
+  this.frameScore = 0
   this.frameCount = 1;
   }
 };
 
 Game.prototype.receiveShot = function(hitpins) {
-  this.shotCount++;
-  this.pinCount -= hitpins;
-  this.frameScore += hitpins; 
-  this.endOfFrame()
+    this.pinCount -= hitpins;
+    this.shotCount++;
+    this.frameScore += hitpins; 
 }
 
 Game.prototype.endOfFrame = function() {
-  if(this.shotCount >2 ) { 
-    this.frameCount ++
-    this.frameReset()
-  }
+  this.scoreCard.push(this.frameScore)
+  this.scoreCard.reduce((a, b) => a + b, 0);
+  this.frameCount ++
+}
+
+Game.prototype.frameReset = function() {
+  this.pinCount = 10; 
+  this.shotCount = 0;
+  this.frameScore = 0;
 }
 
   // if(this.shotCount === 1 && this.bonus = "/") { hitpins * 2 }
@@ -36,16 +40,10 @@ Game.prototype.strikeOrSpare = function() {
   // need to configure how bonus score will be implemented for a spare /
 }
 
-Game.prototype.displayTotalScore = function() {
-  this.scoreCard.push(this.frameScore)
-  return this.scoreCard.reduce((a, b) => a + b, 0);
-}
-
-Game.prototype.frameReset = function() {
-  this.pinCount = 10; 
-  this.shotCount = 0;
-  this.frameScore = 0;
-}
+// Game.prototype.displayTotalScore = function() {
+//   this.scoreCard.push(this.frameScore)
+//   return this.scoreCard.reduce((a, b) => a + b, 0);
+// }
 
 
 
