@@ -34,7 +34,5 @@ describe('Scorecard', function () {
       expect(kingpin.shotCount).toEqual(0)
       expect(kingpin.frameScore).toEqual(0)
     })
-
-
   })
 });

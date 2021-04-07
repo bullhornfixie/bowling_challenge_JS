@@ -2,7 +2,7 @@
 
 class Game {
   constructor() {
-  this.scoreCard = []
+  this.totalScore = 0
   this.pinCount = 10; 
   this.shotCount = 0;
   this.frameScore = 0
@@ -14,12 +14,17 @@ Game.prototype.receiveShot = function(hitpins) {
     this.pinCount -= hitpins;
     this.shotCount++;
     this.frameScore += hitpins; 
+    console.log("hello")
 }
 
 Game.prototype.endOfFrame = function() {
-  this.scoreCard.push(this.frameScore)
-  this.scoreCard.reduce((a, b) => a + b, 0);
   this.frameCount ++
+}
+
+Game.prototype.displayTotalScore = function() {
+  return this.totalScore += this.frameScore 
+  // this.scoreCard.push(this.frameScore)
+  // return this.scoreCard.reduce((a, b) => a + b, 0);
 }
 
 Game.prototype.frameReset = function() {
@@ -40,10 +45,6 @@ Game.prototype.strikeOrSpare = function() {
   // need to configure how bonus score will be implemented for a spare /
 }
 
-// Game.prototype.displayTotalScore = function() {
-//   this.scoreCard.push(this.frameScore)
-//   return this.scoreCard.reduce((a, b) => a + b, 0);
-// }
 
 
 
