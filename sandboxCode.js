@@ -6,14 +6,6 @@ array.push({frame : 1, score : 2, bonus : "none"},
 // console.log(array.length)
 // console.log(array[array.length -1])
 // console.log(array.slice(-1)[0])
-let obj = array.find(obj => obj.Bonus == "Y" )
+let obj = array.find(obj => obj.score == Integer )
 console.log(obj)
 
-let lastElement = [array[array.length -1]]
-console.log(lastElement)
-
-if(lastElement.some(element => element.bonus === "X")){
-  alert("strike!")
-}else{
-  alert("no strike!")
-}

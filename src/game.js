@@ -44,8 +44,7 @@ Game.prototype.addStrikeOrSpareBonusToLastFrame = function() {
 }
 
 Game.prototype.updateScoreCard = function() {
-  this.scoreCard.push({frame : this.frameCount, score : this.frameScore, bonus : this.bonus})
-  // return this.scoreCard.reduce((a, b) => a + b, 0);
+  this.scoreCard.push({frame: this.frameCount, score: this.frameScore, bonus: this.bonus})
   console.log("score card updated", this.scoreCard)
 }
 
@@ -57,11 +56,19 @@ Game.prototype.frameReset = function() {
   console.log("frame reset")
 }
 
+Game.prototype.displayGameScore = function() {
+  let array = this.scoreCard
+  let extractedValue = array.map(item => item['score'])
+  let displayValue = extractedValue.reduce((a, b) => a + b, 0);
+  console.log("game score is", displayValue)
+}
+
 Game.prototype.autoCalculate = function () {
   this.strikeOrSpareForCurrentFrame()
   this.updateScoreCard()
   this.addStrikeOrSpareBonusToLastFrame()
   this.endOfFrame()
   this.frameReset()
+  this.displayGameScore()
   console.log("ready for next frame!")
 }
