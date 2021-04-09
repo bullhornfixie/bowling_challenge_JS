@@ -44,8 +44,13 @@ Game.prototype.addStrikeOrSpareBonusToLastFrame = function() {
 }
 
 Game.prototype.updateScoreCard = function() {
+  this.tenthFrame()
   this.scoreCard.push({frame: this.frameCount, score: this.frameScore, bonus: this.bonus})
   console.log("score card updated", this.scoreCard)
+}
+
+Game.prototype.tenthFrame = function() {
+  if(this.frameCount === 11) { this.frameCount - 1, this.frameScore = 0 }
 }
 
 Game.prototype.frameReset = function() {

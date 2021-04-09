@@ -1,19 +1,19 @@
 
 
-describe('Scorecard', function () {
+describe('Game', function () {
   beforeEach(function () {
     kingpin = new Game;
   });
 
   describe('Rolling a bowling ball', function () {
    
-    it('should knock down all pins down when 10 is entered within a frame', function() {
+    it('knocks down all pins down when 10 is entered within a frame', function() {
       kingpin.roll(9)
       kingpin.roll(1)
       expect(kingpin.pinCount).toEqual(0)
     })
 
-    it('updates your score for each frame', function() {
+    it('tracks frame score', function() {
       kingpin.roll(5)
       kingpin.roll(3)
       expect(kingpin.frameScore).toEqual(8)
@@ -25,7 +25,7 @@ describe('Scorecard', function () {
       expect(kingpin.rollCount).toEqual(2)
     })
 
-    it('resets the frame after 2 rolls', function() {
+    it('resets the frame data, ready for a new frame', function() {
       kingpin.roll(2)
       kingpin.roll(5)
       kingpin.frameReset()
@@ -56,15 +56,6 @@ describe('Scorecard', function () {
       kingpin.roll(2)
       kingpin.strikeOrSpareForCurrentFrame()
       expect(kingpin.bonus).toBe("none")
-    })
-
-    it('tracks total game score', function() {
-      /* frame1 */ kingpin.roll(1), kingpin.roll(4), kingpin.autoCalculate(), expect(kingpin.displayGameScore()).toEqual(5)
-      /* frame2 */ kingpin.roll(4), kingpin.roll(5), kingpin.autoCalculate(), expect(kingpin.displayGameScore()).toEqual(14)
-      /* frame3 */ kingpin.roll(6), kingpin.roll(4), kingpin.autoCalculate(), expect(kingpin.displayGameScore()).toEqual(24) 
-      /* frame4 */ kingpin.roll(5), kingpin.roll(5), kingpin.autoCalculate(), expect(kingpin.displayGameScore()).toEqual(39)
-      /* frame5 */ kingpin.roll(10), /* strike */    kingpin.autoCalculate(), expect(kingpin.displayGameScore()).toEqual(59)
-      /* frame6 */ kingpin.roll(0), kingpin.roll(1), kingpin.autoCalculate(), expect(kingpin.displayGameScore()).toEqual(61)
     })
   });
 });
