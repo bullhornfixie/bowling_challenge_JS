@@ -61,6 +61,7 @@ Game.prototype.displayGameScore = function() {
   let extractedValue = array.map(item => item['score'])
   let displayValue = extractedValue.reduce((a, b) => a + b, 0);
   console.log("game score is", displayValue)
+  return displayValue
 }
 
 Game.prototype.autoCalculate = function () {

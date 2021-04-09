@@ -6,7 +6,7 @@ describe('Scorecard', function () {
   });
 
   describe('Rolling a bowling ball', function () {
-
+   
     it('should knock down all pins down when 10 is entered within a frame', function() {
       kingpin.roll(9)
       kingpin.roll(1)
@@ -36,7 +36,7 @@ describe('Scorecard', function () {
 
     it('changes bonus status to "X" when a strike is achieved in a frame', function() {
       kingpin.roll(10)
-      kingpin.strikeOrSpare()
+      kingpin.strikeOrSpareForCurrentFrame()
       expect(kingpin.pinCount).toEqual(0)
       expect(kingpin.rollCount).toEqual(1)
       expect(kingpin.bonus).toBe("X")
@@ -45,7 +45,7 @@ describe('Scorecard', function () {
     it('changes bonus status to "/" when a spare is achieved in a frame', function() {
       kingpin.roll(5)
       kingpin.roll(5)
-      kingpin.strikeOrSpare()
+      kingpin.strikeOrSpareForCurrentFrame()
       expect(kingpin.pinCount).toEqual(0)
       expect(kingpin.rollCount).toEqual(2)
       expect(kingpin.bonus).toBe("/")
@@ -54,8 +54,17 @@ describe('Scorecard', function () {
     it('changes bonus status to "none" when no bonus is achieved in a frame', function() {
       kingpin.roll(2)
       kingpin.roll(2)
-      kingpin.strikeOrSpare()
+      kingpin.strikeOrSpareForCurrentFrame()
       expect(kingpin.bonus).toBe("none")
+    })
+
+    it('tracks total game score', function() {
+      /* frame1 */ kingpin.roll(1), kingpin.roll(4), kingpin.autoCalculate(), expect(kingpin.displayGameScore()).toEqual(5)
+      /* frame2 */ kingpin.roll(4), kingpin.roll(5), kingpin.autoCalculate(), expect(kingpin.displayGameScore()).toEqual(14)
+      /* frame3 */ kingpin.roll(6), kingpin.roll(4), kingpin.autoCalculate(), expect(kingpin.displayGameScore()).toEqual(24) 
+      /* frame4 */ kingpin.roll(5), kingpin.roll(5), kingpin.autoCalculate(), expect(kingpin.displayGameScore()).toEqual(39)
+      /* frame5 */ kingpin.roll(10), /* strike */    kingpin.autoCalculate(), expect(kingpin.displayGameScore()).toEqual(59)
+      /* frame6 */ kingpin.roll(0), kingpin.roll(1), kingpin.autoCalculate(), expect(kingpin.displayGameScore()).toEqual(61)
     })
   });
 });
