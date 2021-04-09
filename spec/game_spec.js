@@ -34,7 +34,7 @@ describe('Scorecard', function () {
       expect(kingpin.frameScore).toEqual(0)
     })
 
-    it('checks to see if a strike was achieved in frame', function() {
+    it('changes bonus status to "X" when a strike is achieved in a frame', function() {
       kingpin.roll(10)
       kingpin.strikeOrSpare()
       expect(kingpin.pinCount).toEqual(0)
@@ -42,7 +42,7 @@ describe('Scorecard', function () {
       expect(kingpin.bonus).toBe("X")
     })
 
-    it('checks to see if a spare was achieved in frame', function() {
+    it('changes bonus status to "/" when a spare is achieved in a frame', function() {
       kingpin.roll(5)
       kingpin.roll(5)
       kingpin.strikeOrSpare()
@@ -51,7 +51,7 @@ describe('Scorecard', function () {
       expect(kingpin.bonus).toBe("/")
     })
 
-    it('checks to see if no bonus was achieved in frame', function() {
+    it('changes bonus status to "none" when no bonus is achieved in a frame', function() {
       kingpin.roll(2)
       kingpin.roll(2)
       kingpin.strikeOrSpare()

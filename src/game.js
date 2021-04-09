@@ -23,25 +23,27 @@ Game.prototype.endOfFrame = function() {
   console.log("frame over")
 }
 
-Game.prototype.strikeOrSpare = function() {
+Game.prototype.strikeOrSpareForCurrentFrame = function() {
   if(this.rollCount === 1 && this.pinCount === 0 ) { this.bonus = "X" }
   else if(this.rollCount === 2 && this.pinCount === 0 ) { this.bonus = "/" } 
   else{ this.bonus = "none" }
-  console.log("your bonus fo this frame was", this.bonus)
+  console.log("your bonus for this frame is", this.bonus)
 }
 
-Game.prototype.addBonusPoints = function() {
-  let lastFrame = [this.scoreCard[this.scoreCard.length -1]]
-  // if bonus in lastFrame is "X" need to update score in lastFrame with current score as bonus points 
-  console.log(lastFrame)
+Game.prototype.addStrikeBonusToLastFrame = function() {
+  if(this.frameCount > 1) {
+  let bonus = this.frameScore 
+  let objIndex = this.scoreCard.findIndex((obj => obj.frame == this.frameCount - 1))
+  console.log("before update: ", this.scoreCard[objIndex])
+  if(this.scoreCard[objIndex].bonus === "X") { this.scoreCard[objIndex].score += bonus }
+  console.log("after update: ", this.scoreCard[objIndex])
+  }
 }
 
 Game.prototype.updateScoreCard = function() {
-  this.strikeOrSpare()
-  // addBonusPoints needs to be done at this stage as below push will become last element
   this.scoreCard.push({frame : this.frameCount, score : this.frameScore, bonus : this.bonus})
   // return this.scoreCard.reduce((a, b) => a + b, 0);
-  console.log("total score updated")
+  console.log("score card updated", this.scoreCard)
 }
 
 Game.prototype.frameReset = function() {
@@ -49,4 +51,13 @@ Game.prototype.frameReset = function() {
   this.rollCount = 0;
   this.frameScore = 0;
   console.log("frame reset")
+}
+
+Game.prototype.autoCalculate = function () {
+  this.strikeOrSpareForCurrentFrame()
+  this.updateScoreCard()
+  this.addStrikeBonusToLastFrame()
+  this.endOfFrame()
+  this.frameReset()
+  console.log("ready for next frame!")
 }
